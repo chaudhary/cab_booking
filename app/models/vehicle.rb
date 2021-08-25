@@ -15,6 +15,8 @@ class Vehicle
   ]
 
   field :reg_no, type: String
+  validates :reg_no, uniqueness: true
+
   field :status, type: String
   field :last_status_changed_at, type: Time
   field :driver_name, type: String
@@ -25,6 +27,7 @@ class Vehicle
   before_save do |doc|
     if doc.status_changed?
       doc.last_status_changed_at = Time.now
+      VehicleStatusHistory.record(vehicle: self, old_status: doc.status_was, new_status: doc.status)
     end
   end
 

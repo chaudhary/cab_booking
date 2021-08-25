@@ -38,6 +38,12 @@ class VehiclesController < ApplicationController
 
   # PATCH/PUT /vehicles/1 or /vehicles/1.json
   def update
+    if @vehicle.status == Vehicle::ON_TRIP && vehicle_params[:status] != Vehicle::ON_TRIP
+      return redirect_to @vehicle, flash: { error: "status can not be changed for on trip vehicle" }
+    end
+    if @vehicle.status == Vehicle::ON_TRIP
+      vehicle_params.delete(:current_city_name)
+    end
     respond_to do |format|
       if @vehicle.update(vehicle_params)
         format.html { redirect_to @vehicle, notice: "Vehicle was successfully updated." }
@@ -57,7 +63,7 @@ class VehiclesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def vehicle_params
-      params.require(:vehicle).permit(:reg_no, :status, :current_city_name, :driver_name, :driver_email, :driver_mobile)
+      @vehicle_params ||= params.require(:vehicle).permit(:reg_no, :status, :current_city_name, :driver_name, :driver_email, :driver_mobile).to_h
     end
 
 end
