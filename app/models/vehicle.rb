@@ -29,6 +29,7 @@ class Vehicle
   end
 
   def current_city_name
+    return "indeterminate" if self.status == ON_TRIP
     current_city&.name
   end
 
