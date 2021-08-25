@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>From city:</strong>
+  <%= @booking.from_city_id %>
+</p>
+
+<p>
+  <strong>To city:</strong>
+  <%= @booking.to_city_id %>
+</p>
+
+<p>
+  <strong>Vehicle:</strong>
+  <%= @booking.vehicle_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @booking.user_id %>
+</p>
+
+<p>
+  <strong>Started at:</strong>
+  <%= @booking.started_at %>
+</p>
+
+<p>
+  <strong>Completed at:</strong>
+  <%= @booking.completed_at %>
+</p>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<p id="error"><%= flash[:error] %></p>
+
+
+<h1>Bookings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>From city</th>
+      <th>To city</th>
+      <th>Vehicle</th>
+      <th>User</th>
+      <th>Started at</th>
+      <th>Completed at</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.from_city_name %></td>
+        <td><%= booking.to_city_name %></td>
+        <td><%= booking.vehicle_reg_no %></td>
+        <td><%= booking.user_name %></td>
+        <td><%= booking.started_at %></td>
+        <td>
+          <% if booking.completed_at.blank? %>
+            <%= link_to 'Complete', complete_booking_path(booking), method: 'post' %>
+          <% else %>
+            <%= booking.completed_at %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Booking', new_booking_path %>

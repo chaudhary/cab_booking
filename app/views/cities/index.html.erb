@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cities.each do |city| %>
+      <tr>
+        <td><%= city.name %></td>
+        <td><%= city.status %></td>
+        <td><%= link_to 'Change Status', edit_city_path(city) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New City', new_city_path %>

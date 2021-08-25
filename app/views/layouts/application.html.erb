@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CabBooking</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if current_user.blank? %>
+      <div class="" style="font-size: 24px;text-align: right;">
+        <%= link_to 'Login', new_user_session_path %>
+        <%= link_to 'Signup', new_user_registration_path %>
+      </div>
+    <% end %>
+
+    <% if current_user.present? %>
+      <div class="" style="font-size: 24px;text-align: right;">
+        Welcome <%= current_user.name || current_user.email %>
+        <%= link_to 'Logout', destroy_user_session_path, method: 'delete' %>
+      </div>
+    <% end %>
+    <div class="" style="text-align: center;font-size: 40px;margin-top: 24px;">
+      Welcome to Cab Booking System
+    </div>
+    <%= yield %>
+  </body>
+</html>

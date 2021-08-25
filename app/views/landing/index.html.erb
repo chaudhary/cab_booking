@@ -1,0 +1,21 @@
+<% if current_user.present? %>
+  <% if current_user.is_admin %>
+    <div class="" style="max-width: 400px;margin: auto;text-align: center;margin-top: 50px;">
+      <div class="">
+        <%= link_to 'Vehicles', vehicles_path %>
+      </div>
+      <div class="">
+        <%= link_to 'Cities', cities_path %>
+      </div>
+      <div class="">
+        <%= link_to 'Bookings', bookings_path %>
+      </div>
+    </div>
+  <% else %>
+    <div class="" style="max-width: 400px;margin: auto;text-align: center;margin-top: 50px;">
+      <div class="">
+        <%= link_to 'Bookings', bookings_path %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
